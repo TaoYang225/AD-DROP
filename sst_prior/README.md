@@ -30,7 +30,7 @@ python main.py --option='train' --do_mask --attribution='GA' --dropping_rate=0.3
 ```
 * You can set different dropping strategies via the parameters --attribution and --dropping_method
 
-4. To probe a vanilla finetuned model on the development set by setting different dropping strategies as we present in Appendix A, run:
+4. To probe a vanilla finetuned model on the development set by setting different dropping strategies as we present in Appendix B, run:
 ```
 python main.py --option='probe' --dropping_method='low'
 ```
