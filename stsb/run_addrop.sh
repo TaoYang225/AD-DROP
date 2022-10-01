@@ -10,6 +10,7 @@ LR=1e-5
 SEED=42
 SEQ_LENS=100
 LAYERS=12
+HEADS=12
 OPTION=train
 CUDA="cuda:3"
 ATTR=GA
@@ -29,6 +30,7 @@ do
     --model ${MODEL_NAME} \
     --epoch ${EPOCH} \
     --layers ${LAYERS} \
+    --heads ${HEADS} \
     --patient ${PATIENT} \
     --PTM_learning_rate ${LR} \
     --max_len ${SEQ_LENS} \
@@ -50,6 +52,7 @@ done
 #--model ${MODEL_NAME} \
 #--epoch ${EPOCH} \
 #--layers ${LAYERS} \
+#--heads ${HEADS} \
 #--patient ${PATIENT} \
 #--PTM_learning_rate ${LR} \
 #--max_len ${SEQ_LENS} \

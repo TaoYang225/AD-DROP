@@ -10,6 +10,7 @@ LR=1e-5
 SEED=42
 SEQ_LENS=128
 LAYERS=12
+HEADS=12
 OPTION=train
 CUDA="cuda:4"
 
@@ -21,6 +22,7 @@ nohup python main.py \
 --model ${MODEL_NAME} \
 --epoch ${EPOCH} \
 --layers ${LAYERS} \
+--heads ${HEADS} \
 --patient ${PATIENT} \
 --PTM_learning_rate ${LR} \
 --max_len ${SEQ_LENS} \

@@ -26,7 +26,7 @@ def train_process(args, model, optimizer,scheduler, train_dataloader, eval_datal
             input_ids, attn_mask, labels, _ = [data.to(device) for data in datas]
 
             # creat initial attention mask for each layer
-            extend_attn_mask = attn_mask.unsqueeze(1).unsqueeze(2).expand([-1, args.layers, args.max_len, -1])
+            extend_attn_mask = attn_mask.unsqueeze(1).unsqueeze(2).expand([-1, args.heads, args.max_len, -1])
             extend_attn_mask_list = [extend_attn_mask for i in range(args.layers)]
             extend_attn_mask_list_A = torch.stack(extend_attn_mask_list, dim=0)
 
@@ -154,7 +154,7 @@ def test_process(args, model, test_dataloader, device, grad_all_masks=None):
     for step, datas in enumerate(test_dataloader):
         input_ids, attn_mask, labels, indexs = [data.to(device) for data in datas]
 
-        extend_attn_mask = attn_mask.unsqueeze(1).unsqueeze(2).expand([-1, args.layers, args.max_len, -1])
+        extend_attn_mask = attn_mask.unsqueeze(1).unsqueeze(2).expand([-1, args.heads, args.max_len, -1])
 
         extend_attn_mask_list = [extend_attn_mask for i in range(args.layers)]
         if grad_all_masks is not None: # used for probe experiment
@@ -205,7 +205,7 @@ def compute_grad_mask(args, eval_dataloader, model, device):
     for step, datas in enumerate(eval_dataloader):
         input_ids, attn_mask, labels, _ = [data.to(device) for data in datas]
 
-        extend_attn_mask = attn_mask.unsqueeze(1).unsqueeze(2).expand([-1, args.layers, args.max_len, -1])
+        extend_attn_mask = attn_mask.unsqueeze(1).unsqueeze(2).expand([-1, args.heads, args.max_len, -1])
         extend_attn_mask_list = [extend_attn_mask for i in range(args.layers)]
         extend_attn_mask_list = torch.stack(extend_attn_mask_list, dim=0)
 

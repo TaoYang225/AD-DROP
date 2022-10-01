@@ -31,6 +31,7 @@ def parse_opt():
     parser.add_argument('--output_dir', type = str, default = 'model', help = 'directory to store model')
     parser.add_argument('--bert_path', type = str, default = 'roberta-base', help = 'path to pre-trained model BERT/RoBERTa')
     parser.add_argument('--layers', type=int, default=12, help='layers of pre-trained model')
+    parser.add_argument('--heads', type=int, default=12, help='heads of pre-trained model')
     parser.add_argument('--num_class', type = int, default = 2, help = 'number of classes')
     parser.add_argument('--model', type=str, default='RoBERTa', choices=['RoBERTa', 'BERT'], help='choice of the used model')
     parser.add_argument('--epoch', type =  int, default = 10, help = 'epoch of training')

@@ -1,10 +1,10 @@
 import torch
 
 def compute_actual_lens(args, attn_mask, device): # compute num of positions need to drop, and tag the position
-    actual_len = torch.sum(attn_mask, dim=-1)
-    drop_nums = (args.p_rate * actual_len).long()  # [N,]  ---> [N, 12, L, L]
-    drop_nums_onehot = torch.eye(args.max_len).to(device)[drop_nums]  # [N, L]
-    drop_nums_onehot = drop_nums_onehot.unsqueeze(1).unsqueeze(2).expand([-1, args.layers, args.max_len, -1])
+    actual_len = torch.sum(attn_mask, dim=-1) # [B,]
+    drop_nums = (args.p_rate * actual_len).long() # [B,]
+    drop_nums_onehot = torch.eye(args.max_len).to(device)[drop_nums] # [B,L]
+    drop_nums_onehot = drop_nums_onehot.unsqueeze(1).unsqueeze(2).expand([-1, args.heads, args.max_len, -1]) # [B,L] ----> # [B, H, L, L]
     return drop_nums_onehot
 
 def generate_mask_low(args, grad_t, extend_attn_mask, attn_mask, device):
@@ -26,10 +26,10 @@ def generate_mask_low(args, grad_t, extend_attn_mask, attn_mask, device):
     return total_masks
 
 def compute_actual_lens_rev(args, attn_mask, device): # compute num of positions need to drop, and tag the position
-    actual_len = torch.sum(attn_mask, dim=-1)
-    drop_nums = ((1- args.p_rate) * actual_len).long()  # [N,]  ---> [N, 12, L, L] dropping 1- args.p_rate
-    drop_nums_onehot = torch.eye(args.max_len).to(device)[drop_nums]  # [N, L]
-    drop_nums_onehot = drop_nums_onehot.unsqueeze(1).unsqueeze(2).expand([-1, args.layers, args.max_len, -1])
+    actual_len = torch.sum(attn_mask, dim=-1) # [B,]
+    drop_nums = ((1- args.p_rate) * actual_len).long()  # dropping 1- args.p_rate # [B,]
+    drop_nums_onehot = torch.eye(args.max_len).to(device)[drop_nums]  # [B,L]
+    drop_nums_onehot = drop_nums_onehot.unsqueeze(1).unsqueeze(2).expand([-1, args.heads, args.max_len, -1]) # [B,L] ----> # [B, H, L, L]
     return drop_nums_onehot
 
 def generate_mask_high(args, grad_t, extend_attn_mask, attn_mask, device):
