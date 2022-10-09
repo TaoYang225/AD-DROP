@@ -26,7 +26,7 @@ python data_process.py --bert_path='bert-base-uncased' --model='BERT'
 ```
 python main.py --option='train' --model='BERT' --bert_path='bert-base-uncased'
 ```
-or  
+  or  
 ```bash
 >> bash run_ft.sh
 ```
