@@ -8,7 +8,7 @@ The source code of prior experiments on SST-2 dataset and this document describe
 * sklearn==0.0
 * transformers==2.9.0
 
-Datasets are available in the GLUE benchmark (https://gluebenchmark.com/tasks), and pre-trained models are available in Huggingface (https://huggingface.co/models).
+Datasets are available in the GLUE benchmark (https://gluebenchmark.com/tasks), and pretrained models are available in Huggingface (https://huggingface.co/models).
 
 
 An example of running prior experiments on SST-2.

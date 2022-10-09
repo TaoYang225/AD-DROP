@@ -22,11 +22,11 @@ An example of finetuning BERT with AD-DROP.
 python data_process.py --bert_path='bert-base-uncased' --model='BERT'
 ```
 
-2.(Optional) Vanilla finetune a basic model:
+2. (Optional) Vanilla finetune a basic model:
 ```
 python main.py --option='train' --model='BERT' --bert_path='bert-base-uncased'
 ```
-or 
+or  
 ```bash
 >> bash run_ft.sh
 ```
